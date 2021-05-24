@@ -2,6 +2,8 @@ package org.insa.graphs.algorithm.utils;
 
 import java.util.ArrayList;
 
+import org.insa.graphs.algorithm.shortestpath.Label;
+
 /**
  * Implements a binary heap containing elements of type E.
  *
@@ -215,5 +217,20 @@ public class BinaryHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     public String toString() {
         return BinaryHeapFormatter.toStringTree(this, 8);
     }
+
+	public int indexOf(Label x) {
+		// TODO Auto-generated method stub
+		int index_x = array.indexOf(x);
+		if (index_x<0 || index_x > this.currentSize-1)
+			return -1;
+		
+		return index_x;
+	}
+
+	public void update(int index) {
+		// TODO Auto-generated method stub
+		this.percolateUp(index);
+		this.percolateDown(index);
+	}
 
 }
