@@ -24,7 +24,14 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
     public DijkstraAlgorithm(ShortestPathData data) {
         super(data);
     }
-
+ 
+    protected void Init(Label[] Labels, Graph graph, ShortestPathData data) {
+      	 for (int i = 0 ; i < graph.size(); i++) {
+      		System.out.println(i + " " + data.getGraph().getNodes().get(i).getId());
+      		labels[i] = new Label(data.getGraph().getNodes().get(i), false, Double.POSITIVE_INFINITY, null);
+           }
+      }
+    
     @Override
     protected ShortestPathSolution doRun() {
         final ShortestPathData data = getInputData();
@@ -36,11 +43,12 @@ public class DijkstraAlgorithm extends ShortestPathAlgorithm {
         // create a new table of labels 
         labels = new Label[graph.getNodes().size()];
         //associate every sommets with a label 
-        for (int i =0;i<labels.length;i++) {
+        /*for (int i =0;i<labels.length;i++) {
         	System.out.println(i + " " + data.getGraph().getNodes().get(i).getId());
         	labels[i] = new Label(data.getGraph().getNodes().get(i), false, Double.POSITIVE_INFINITY, null);
         		
-        }
+        }*/
+        this.Init(labels, graph, data);
         labels[data.getOrigin().getId()].setCost(0);
         
         BinaryHeap<Label> Heap = new BinaryHeap<Label>();

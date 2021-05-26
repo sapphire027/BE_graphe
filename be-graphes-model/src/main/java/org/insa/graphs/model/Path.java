@@ -350,5 +350,26 @@ public class Path {
     	min_temps += i.getMinimumTravelTime();}
         return min_temps;
     }
+    @Override
+    public boolean equals(Object o) {
+    	
+    	if (this.getClass() != o.getClass()) {
+    		return false;
+    	}
+    	
+    	Path other = (Path) o;
+    	if (this.size() != other.size()) {
+    		return false;
+    	}
+    	
+    	for(int i = 0; i < this.arcs.size(); i++) {
+    		if(!(this.arcs.get(i).getOrigin().equals(other.arcs.get(i).getOrigin()) 
+    				&& this.arcs.get(i).getOrigin().equals(other.arcs.get(i).getOrigin()))) {
+    			return false;
+    		}
+    	}
+    	
+    	return true;
+    }
 
 }
